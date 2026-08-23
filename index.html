@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#1e4a3d">
+<meta name="theme-color" content="#0d2b20">
 <title>Eazan &amp; Luyoona — December 1st, 2026</title>
 <meta name="description" content="Join Eazan and Luyoona as they celebrate their wedding on December 1, 2026 at Pavilion by Gold, Malé, Maldives.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -62,6 +62,16 @@
     <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="0.5"/>
     <text x="50" y="61" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-style="italic" font-weight="500" font-size="36" fill="currentColor">E&amp;L</text>
   </symbol>
+
+  <!-- Interlocking wedding rings -->
+  <symbol id="wedding-rings" viewBox="0 0 120 64">
+    <g fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="46" cy="38" r="20"/>
+      <circle cx="74" cy="38" r="20"/>
+      <path d="M64 18 L74 7 L84 18 L74 25 Z"/>
+      <path d="M69 9 H79 M66 18 H82" opacity="0.7"/>
+    </g>
+  </symbol>
 </svg>
 
 <!-- ENVELOPE GATE — click/tap to open the invitation -->
@@ -93,7 +103,11 @@
         <svg class="lace-floral lace-floral--calla" aria-hidden="true"><use href="#calla-lily"/></svg>
         <svg class="lace-floral lace-floral--orchid" aria-hidden="true"><use href="#orchid"/></svg>
         <span class="lace-eyebrow">The Wedding Of</span>
-        <span class="lace-names">Eazan<br><em>&amp;</em><br>Luyoona</span>
+        <span class="lace-names">
+          <span>Eazan</span>
+          <em>&amp;</em>
+          <span>Luyoona</span>
+        </span>
         <span class="lace-rule" aria-hidden="true"></span>
         <span class="lace-sub">request the pleasure of your company</span>
       </span>
@@ -109,21 +123,8 @@
       <svg viewBox="0 0 100 100"><use href="#monogram"/></svg>
     </span>
   </button>
-  <p class="envelope-hint" id="envelopeHint">Open to reveal your invitation</p>
+  <p class="envelope-hint" id="envelopeHint">Tap the seal to open our invitation</p>
 </div>
-
-<!-- Mobile nav toggle -->
-<nav class="site-nav" id="siteNav" aria-label="Primary">
-  <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-  <ul class="nav-menu" id="navMenu">
-    <li><a href="#home" class="nav-link">Home</a></li>
-    <li><a href="#details" class="nav-link">Details</a></li>
-    <li><a href="#location" class="nav-link">Location</a></li>
-    <li><a href="#countdown" class="nav-link">Countdown</a></li>
-  </ul>
-</nav>
 
 <!-- 1. HERO -->
 <header class="hero" id="home">
@@ -131,7 +132,7 @@
   <svg class="floral floral--calla floral--hero-right" aria-hidden="true"><use href="#calla-lily"/></svg>
   <div class="hero-inner" data-reveal>
     <p class="bismillah" lang="ar" dir="rtl">بسم الله الرحمن الرحيم</p>
-    <p class="eyebrow">Together with their families</p>
+    <p class="eyebrow">Together with our houses, we bid you welcome</p>
     <svg class="sprig sprig--hero" aria-hidden="true"><use href="#sprig"/></svg>
     <h1 class="hero-names">
       <span>Eazan</span>
@@ -152,11 +153,23 @@
   <section class="invitation" id="invitation" data-reveal>
     <svg class="floral floral--calla floral--left" aria-hidden="true"><use href="#calla-lily"/></svg>
     <svg class="floral floral--orchid floral--right" aria-hidden="true"><use href="#orchid"/></svg>
-    <svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg>
-    <p class="invitation-text">
-      Together with their families, Eazan and Luyoona warmly invite you to celebrate their marriage, an evening filled with love, laughter, and the people who mean the most to them.
-    </p>
-    <p class="invitation-date">The First of December, Two Thousand Twenty-Six</p>
+    <div class="invitation-card">
+      <span class="card-beam card-beam--top" aria-hidden="true"></span>
+      <span class="card-beam card-beam--right" aria-hidden="true"></span>
+      <span class="card-beam card-beam--bottom" aria-hidden="true"></span>
+      <span class="card-beam card-beam--left" aria-hidden="true"></span>
+      <span class="invitation-corner invitation-corner--top" aria-hidden="true"></span>
+      <span class="invitation-corner invitation-corner--bottom" aria-hidden="true"></span>
+      <p class="section-eyebrow">You’re Invited</p>
+      <svg class="rings-mark" aria-hidden="true"><use href="#wedding-rings"/></svg>
+      <h2 class="invitation-heading">With joyful hearts</h2>
+      <p class="invitation-text">
+        Together with our families, we warmly invite you to share in the joy of our wedding and celebrate the beginning of our life together.
+      </p>
+      <svg class="sprig" aria-hidden="true"><use href="#sprig"/></svg>
+      <p class="invitation-date">The First of December<br>Two Thousand Twenty-Six</p>
+      <p class="invitation-signature">Eazan <em>&amp;</em> Luyoona</p>
+    </div>
     <div class="floral-row" aria-hidden="true">
       <svg class="floral-row-icon"><use href="#orchid"/></svg>
       <svg class="floral-row-icon floral-row-icon--calla"><use href="#calla-lily"/></svg>
@@ -169,8 +182,8 @@
     <svg class="floral floral--orchid floral--left" aria-hidden="true"><use href="#orchid"/></svg>
     <svg class="floral floral--calla floral--right" aria-hidden="true"><use href="#calla-lily"/></svg>
     <svg class="swatch-mark swatch-mark--large" aria-hidden="true"><use href="#swatch"/></svg>
-    <p class="section-eyebrow">The Occasion</p>
-    <h2 class="section-title">Wedding Details</h2>
+    <p class="section-eyebrow">Join Us For</p>
+    <h2 class="section-title">Our Wedding Day</h2>
 
     <div class="details-grid details-grid--single">
       <article class="detail-card">
@@ -195,8 +208,8 @@
 
   <!-- 4. LOCATION -->
   <section class="location" id="location" data-reveal>
-    <p class="section-eyebrow">Find Us</p>
-    <h2 class="section-title">Location</h2>
+    <p class="section-eyebrow">Where We’ll Say “I Do”</p>
+    <h2 class="section-title">The Venue</h2>
     <p class="location-venue">Pavilion by Gold</p>
     <p class="location-address">West Beach Pavilion, Rasfannu, Boduthakurufaanu Magu, Malé, Maldives</p>
 
@@ -253,7 +266,8 @@
     <svg class="floral floral--calla floral--left" aria-hidden="true"><use href="#calla-lily"/></svg>
     <svg class="floral floral--orchid floral--right" aria-hidden="true"><use href="#orchid"/></svg>
     <svg class="sprig sprig--closing" aria-hidden="true"><use href="#sprig"/></svg>
-    <p class="closing-text">We look forward to celebrating this special day with you.</p>
+    <p class="closing-kicker">Save the date</p>
+    <p class="closing-text">Your presence will make our celebration all the more meaningful.</p>
     <p class="closing-names">Eazan &amp; Luyoona</p>
     <p class="closing-date">December 1st, 2026</p>
     <div class="floral-row" aria-hidden="true">

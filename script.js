@@ -5,6 +5,8 @@
   var gate = document.getElementById('envelopeGate');
   var envelope = document.getElementById('envelopeButton');
   var hint = document.getElementById('envelopeHint');
+  var hero = document.querySelector('.hero-inner[data-reveal]');
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (gate && envelope) {
     document.documentElement.classList.add('gate-locked');
@@ -17,45 +19,34 @@
       envelope.classList.add('is-open');
       if (hint) hint.style.opacity = '0';
 
-      // let the flap + card animation play, then fade the whole gate away
+      // Finish the card reveal before gently handing off to the page.
       window.setTimeout(function () {
         gate.classList.add('is-dismissed');
         document.documentElement.classList.remove('gate-locked');
-      }, 1900);
+      }, reduceMotion ? 50 : 1750);
 
-      // fully remove from the accessibility tree once hidden
+      window.setTimeout(function () {
+        if (hero) hero.classList.add('is-visible');
+      }, reduceMotion ? 50 : 1850);
+
+      // Fully remove the gate after its fade has completed.
       window.setTimeout(function () {
         gate.setAttribute('aria-hidden', 'true');
         gate.style.display = 'none';
-      }, 2800);
+      }, reduceMotion ? 150 : 2700);
     }
 
     envelope.addEventListener('click', openEnvelope);
     envelope.addEventListener('keyup', function (e) {
       if (e.key === 'Enter' || e.key === ' ') openEnvelope();
     });
-  }
-
-  /* ---------- Mobile nav ---------- */
-  var toggle = document.getElementById('navToggle');
-  var menu = document.getElementById('navMenu');
-
-  if (toggle && menu) {
-    toggle.addEventListener('click', function () {
-      var open = menu.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-
-    menu.querySelectorAll('.nav-link').forEach(function (link) {
-      link.addEventListener('click', function () {
-        menu.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-      });
-    });
+  } else if (hero) {
+    hero.classList.add('is-visible');
   }
 
   /* ---------- Scroll reveal ---------- */
-  var revealEls = document.querySelectorAll('[data-reveal]');
+  // The hero is revealed by the envelope sequence; sections reveal on scroll.
+  var revealEls = document.querySelectorAll('[data-reveal]:not(.hero-inner)');
   if ('IntersectionObserver' in window && revealEls.length) {
     var io = new IntersectionObserver(
       function (entries) {
@@ -71,6 +62,30 @@
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Invitation card tilt ---------- */
+  var invitationCard = document.querySelector('.invitation-card');
+  var canTilt = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (invitationCard && canTilt && !reduceMotion) {
+    invitationCard.addEventListener('pointermove', function (event) {
+      var rect = invitationCard.getBoundingClientRect();
+      var x = (event.clientX - rect.left) / rect.width;
+      var y = (event.clientY - rect.top) / rect.height;
+
+      invitationCard.style.setProperty('--tilt-x', ((0.5 - y) * 12).toFixed(2) + 'deg');
+      invitationCard.style.setProperty('--tilt-y', ((x - 0.5) * 12).toFixed(2) + 'deg');
+      invitationCard.style.setProperty('--glow-x', (x * 100).toFixed(1) + '%');
+      invitationCard.style.setProperty('--glow-y', (y * 100).toFixed(1) + '%');
+    });
+
+    invitationCard.addEventListener('pointerleave', function () {
+      invitationCard.style.setProperty('--tilt-x', '0deg');
+      invitationCard.style.setProperty('--tilt-y', '0deg');
+      invitationCard.style.setProperty('--glow-x', '50%');
+      invitationCard.style.setProperty('--glow-y', '50%');
+    });
   }
 
   /* ---------- Countdown ---------- */

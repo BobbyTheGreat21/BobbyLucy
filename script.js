@@ -7,27 +7,41 @@
   var hint = document.getElementById('envelopeHint');
 
   if (gate && envelope) {
-    document.documentElement.classList.add('gate-locked');
+    var gateAlreadySeen = document.documentElement.classList.contains('gate-seen');
 
-    var opened = false;
+    if (gateAlreadySeen) {
+      gate.setAttribute('aria-hidden', 'true');
+    } else {
+      document.documentElement.classList.add('gate-locked');
+    }
+
+    var opened = gateAlreadySeen;
     function openEnvelope() {
       if (opened) return;
       opened = true;
 
+      try {
+        sessionStorage.setItem('wedding-invitation-opened', 'true');
+      } catch (e) {}
+
       envelope.classList.add('is-open');
       if (hint) hint.style.opacity = '0';
 
-      // let the flap + card animation play, then fade the whole gate away
+      var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var dismissDelay = reducedMotion ? 50 : 1250;
+      var removeDelay = reducedMotion ? 120 : 1850;
+
+      // Let the reveal complete, then fade the gate without holding up the page.
       window.setTimeout(function () {
         gate.classList.add('is-dismissed');
         document.documentElement.classList.remove('gate-locked');
-      }, 1900);
+      }, dismissDelay);
 
       // fully remove from the accessibility tree once hidden
       window.setTimeout(function () {
         gate.setAttribute('aria-hidden', 'true');
         gate.style.display = 'none';
-      }, 2800);
+      }, removeDelay);
     }
 
     envelope.addEventListener('click', openEnvelope);
@@ -109,5 +123,9 @@
 
     tick();
     var timer = setInterval(tick, 1000);
+
+    document.addEventListener('visibilitychange', function () {
+      if (!document.hidden) tick();
+    });
   }
 })();

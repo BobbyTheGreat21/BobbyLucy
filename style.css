@@ -623,7 +623,11 @@ html.gate-locked body {
     radial-gradient(ellipse 90% 60% at 50% 30%, var(--forest-800), var(--forest-900) 78%);
 }
 
-.hero-inner { max-width: 640px; }
+.hero-inner {
+  width: 100%;
+  max-width: 640px;
+  min-width: 0;
+}
 
 .bismillah {
   font-family: var(--font-display);
@@ -654,6 +658,7 @@ html.gate-locked body {
   justify-content: center;
   gap: 0.4em;
   flex-wrap: wrap;
+  max-width: 100%;
   color: var(--cream);
 }
 .hero-names span { display: inline-block; opacity: 0; transform: translateY(18px); }
@@ -971,4 +976,16 @@ section {
   section { padding: var(--space-5) var(--space-2); }
   .detail-card dl > div { flex-direction: column; gap: 2px; }
   .detail-card dd { text-align: left; }
+
+  .hero-names {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.08em;
+    font-size: clamp(2.8rem, 16vw, 4rem);
+    line-height: 0.82;
+  }
+  .hero-amp {
+    line-height: 1;
+    margin-block: 0.08em;
+  }
 }

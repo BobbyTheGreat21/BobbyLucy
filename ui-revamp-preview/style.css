@@ -144,8 +144,7 @@ footer { padding: 1.2rem; color: var(--cream); text-align: center; background: v
 footer p { margin: 0; }
 
 @media (min-width:700px) {
-  body { padding-inline: 1rem; }
-  .cover { left: 50%; width: min(100%,980px); transform: translateX(-50%); }
+  .site { width: 100%; max-width: none; }
   .topbar { height: 58px; }
   .hero { min-height: 780px; }
   .map-frame { height: 360px; }

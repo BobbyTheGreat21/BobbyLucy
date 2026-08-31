@@ -137,7 +137,7 @@ section { text-align: center; }
 .countdown-grid span { font-family: var(--sans); font-size: clamp(.43rem,1.8vw,.62rem); letter-spacing: .1em; text-transform: uppercase; }
 .countdown-message { margin: 0; font-size: 1.4rem; font-style: italic; }
 
-.closing { min-height: 410px; display: grid; align-content: center; justify-items: center; padding: 3.5rem 1.5rem; color: var(--cream); background: linear-gradient(rgba(0,55,36,.16),rgba(4,8,7,.7)),url("assets/blessing-flower.jpg") center / cover; }
+.closing { min-height: 410px; display: grid; align-content: center; justify-items: center; padding: 3.5rem 1.5rem; color: var(--cream); background: linear-gradient(125deg,rgba(22,153,111,.08),rgba(2,70,49,.3) 45%,rgba(0,55,36,.78)),url("assets/orchid-phalaenopsis.webp") center / cover; }
 .closing-text { max-width: 520px; margin: 0 0 1.2rem; color: var(--silver); font-size: clamp(1.1rem,4vw,1.45rem); font-style: italic; }
 .closing-names { margin: 0; font-size: clamp(2.6rem,10vw,5rem); font-style: italic; line-height: .9; }
 .closing-date { margin: 1rem 0 0; color: var(--sea-400); font-family: var(--sans); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; }
